@@ -1,20 +1,27 @@
 import { Routes, Route, Navigate, Link } from "react-router-dom";
 import MembersPage from "./pages/MembersPage";
 import ProfilePage from "./pages/ProfilePage";
+import "./styles/App.css";
 
 export default function App() {
   return (
-    <div style={{ fontFamily: "system-ui", padding: 24, maxWidth: 900 }}>
-      <header style={{ display: "flex", gap: 12, alignItems: "center" }}>
-        <h1 style={{ margin: 0 }}>DALI Social</h1>
-        <Link to="/members">Members</Link>
+    <div className="appShell">
+      <header className="appHeader">
+        <Link to="/members" className="brand">
+          DALI Social
+        </Link>
+        <nav className="navLinks">
+          <Link to="/members">Members</Link>
+        </nav>
       </header>
 
-      <Routes>
-        <Route path="/" element={<Navigate to="/members" replace />} />
-        <Route path="/members" element={<MembersPage />} />
-        <Route path="/members/:id" element={<ProfilePage />} />
-      </Routes>
+      <main className="appMain">
+        <Routes>
+          <Route path="/" element={<Navigate to="/members" replace />} />
+          <Route path="/members" element={<MembersPage />} />
+          <Route path="/members/:id" element={<ProfilePage />} />
+        </Routes>
+      </main>
     </div>
   );
 }

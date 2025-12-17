@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchMembers } from "../api/members";
+import "../styles/MembersPage.css";
 
 export default function MembersPage() {
   const [members, setMembers] = useState([]);
@@ -20,18 +21,21 @@ export default function MembersPage() {
   }, [search, devOnly]);
 
   return (
-    <div>
-      <h2>Members</h2>
+    <div className="membersPage">
+      <div className="membersTop">
+        <h2 className="pageTitle">Members</h2>
+        <p className="pageSub">{status}</p>
+      </div>
 
-      <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+      <div className="controls">
         <input
+          className="searchInput"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search by name..."
-          style={{ padding: 8, width: 260 }}
         />
 
-        <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+        <label className="checkboxLabel">
           <input
             type="checkbox"
             checked={devOnly}
@@ -41,22 +45,22 @@ export default function MembersPage() {
         </label>
       </div>
 
-      <p>{status}</p>
-
-      <ul style={{ paddingLeft: 18 }}>
+      <div className="membersGrid">
         {members.map((m) => (
-          <li key={m.id} style={{ marginBottom: 10 }}>
-            <div>
-              <Link to={`/members/${m.id}`}>
-                <strong>{m.name}</strong>
-              </Link>{" "}
-              ({m.year})
+          <Link key={m.id} to={`/members/${m.id}`} className="memberCard">
+            <img className="avatar" src={m.picture} alt={m.name} />
+            <div className="memberInfo">
+              <div className="memberName">{m.name}</div>
+              <div className="memberMeta">
+                {m.major} • {m.year}
+              </div>
+              <div className="memberFav">
+                Favorite: {m["favorite thing 1"]}
+              </div>
             </div>
-            <div>Major: {m.major}</div>
-            <div>Favorite thing: {m["favorite thing 1"]}</div>
-          </li>
+          </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

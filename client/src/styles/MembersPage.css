@@ -1,0 +1,111 @@
+.membersPage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.membersTop {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pageTitle {
+  margin: 0;
+}
+
+.pageSub {
+  margin: 0;
+  color: var(--muted-foreground);
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.searchInput {
+  width: 260px;
+  max-width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.checkboxLabel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted-foreground);
+}
+
+.membersGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 760px) {
+  .membersGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.memberCard {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  text-decoration: none;
+}
+
+.memberCard:hover {
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+
+.memberInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.memberName {
+  font-weight: 700;
+}
+
+.memberMeta {
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
+
+.memberFav {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
