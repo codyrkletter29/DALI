@@ -1,31 +1,20 @@
-import { useEffect, useState } from "react";
+import { Routes, Route, Navigate, Link } from "react-router-dom";
+import MembersPage from "./pages/MembersPage";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
-  const [members, setMembers] = useState([]);
-  const [status, setStatus] = useState("Loading members...");
-
-  useEffect(() => {
-    fetch("http://localhost:4000/api/members")
-      .then((res) => res.json())
-      .then((data) => {
-        setMembers(data.members);
-        setStatus(`Loaded ${data.count} members`);
-      })
-      .catch(() => setStatus("Failed to load members (is backend running?)"));
-  }, []);
-
   return (
-    <div style={{ fontFamily: "system-ui", padding: 24 }}>
-      <h1>DALI Social</h1>
-      <p>{status}</p>
+    <div style={{ fontFamily: "system-ui", padding: 24, maxWidth: 900 }}>
+      <header style={{ display: "flex", gap: 12, alignItems: "center" }}>
+        <h1 style={{ margin: 0 }}>DALI Social</h1>
+        <Link to="/members">Members</Link>
+      </header>
 
-      <ul>
-        {members.map((m, idx) => (
-          <li key={m.id || m._id || m.name || idx}>
-            <strong>{m.name}</strong>
-          </li>
-        ))}
-      </ul>
+      <Routes>
+        <Route path="/" element={<Navigate to="/members" replace />} />
+        <Route path="/members" element={<MembersPage />} />
+        <Route path="/members/:id" element={<ProfilePage />} />
+      </Routes>
     </div>
   );
 }
