@@ -1,0 +1,36 @@
+.feedPage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feedTop {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pageTitle {
+  margin: 0;
+}
+
+.pageSub {
+  margin: 0;
+  color: var(--muted-foreground);
+}
+
+.emptyCard {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.emptyTitle {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.emptyText {
+  color: var(--muted-foreground);
+}
