@@ -25,9 +25,12 @@ app.get("/api/members", (req, res) => {
   }));
 
   const search = (req.query.search || "").toLowerCase();
-  const filtered = search
+  let filtered = search
     ? members.filter((m) => (m.name || "").toLowerCase().includes(search))
     : members;
+
+  const devOnly = req.query.dev === "true";
+  if (devOnly) filtered = filtered.filter((m) => m.dev);
 
   res.json({ count: filtered.length, members: filtered });
 });
