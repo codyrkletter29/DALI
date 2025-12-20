@@ -8,7 +8,11 @@ export default function ProfilePage() {
   const [status, setStatus] = useState("Loading profile...");
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/members/${id}`)
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? 'https://api.codykletter.me'  // Replace with your actual API domain
+      : 'http://localhost:4000';
+    
+    fetch(`${baseUrl}/api/members/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setMember(data.member);
