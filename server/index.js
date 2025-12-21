@@ -1,5 +1,9 @@
+require("dotenv").config(); // Load .env variables
 const express = require("express");
 const cors = require("cors");
+const connectDB = require("./config/db");
+const authRoutes = require("./routes/auth");
+const postsRoutes = require("./routes/posts");
 
 const app = express();
 app.use(cors());
@@ -7,6 +11,14 @@ app.use(express.json()); // lets server read JSON bodies
 
 const fs = require("fs");
 const path = require("path");
+
+// Connect to MongoDB on startup
+connectDB();
+
+// Mount auth routes
+app.use("/api/auth", authRoutes);
+// Mount posts routes
+app.use("/api/posts", postsRoutes);
 
 function loadMembers() {
   const filePath = path.join(__dirname, "data", "dali_social_media.json");
