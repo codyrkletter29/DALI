@@ -25,7 +25,14 @@ const memberSchema = new mongoose.Schema(
       mentor: { type: Boolean, default: false },
     },
     birthday: String, // Format: MM-DD
-    home: String,
+    homeLocation: {
+    raw: String,     // original string from dataset
+    city: String,
+    state: String,   // 2-letter (NH, CA)
+    lat: Number,
+    lng: Number,
+    source: String,  // "us_cities_csv" or "state_centroid_fallback" or "none"
+    },
     quote: String,
     favorites: {
       thing1: String,
