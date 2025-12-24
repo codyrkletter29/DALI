@@ -144,13 +144,13 @@ Base URL: `http://localhost:4000`
 - `GET /api/posts` — list posts (newest first)
 - `GET /api/posts/:id` — fetch one post
 - `POST /api/posts`
-  - Required: `content`, `author`, `authorName`
-  - `author` should be a **User** `_id`
+  - Required: `content`, `author`
+  - `author` should be a **Member** `_id`
 - `PUT /api/posts/:id/like`
-  - Body: `{ "userId": "<user_id>" }`
-  - Toggles like for the given user
+  - Body: `{ "memberId": "<member_id>" }`
+  - Toggles like for the given member
 - `DELETE /api/posts/:id`
-  - Body: `{ "userId": "<user_id>" }` (required if post has an author)
+  - Body: `{ "memberId": "<member_id>" }` (required if post has an author)
 
 ### Members
 
@@ -242,15 +242,15 @@ Member profile shape (stored in MongoDB):
 ```js
 {
   content: String,
-  author: ObjectId, // Member id (routes currently pass User ids)
+  author: ObjectId, // Member id
   authorName: String,
   likes: {
     count: Number,
-    users: [ObjectId] // member ids (routes currently pass User ids)
+    users: [ObjectId] // member ids
   },
   comments: [
     {
-      author: ObjectId, // member id (routes currently pass User ids)
+      author: ObjectId, // member id
       authorName: String,
       content: String,
       createdAt: Date

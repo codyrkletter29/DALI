@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const { Post, User, Member } = require("../models");
+const { Post, Member } = require("../models");
 
 const router = express.Router();
 
@@ -38,22 +38,18 @@ router.get("/:id", async (req, res) => {
 // POST /api/posts - create post
 router.post("/", async (req, res) => {
   try {
-    const { content, author, authorName } = req.body;
+    const { content, author } = req.body;
     if (!content || !content.trim()) return res.status(400).json({ error: "Content is required" });
+    if (!author) return res.status(400).json({ error: "Author is required" });
 
-    // author can be optional (for now), but if provided validate
-    let authorId = null;
-    if (author) {
-      if (!mongoose.Types.ObjectId.isValid(author)) return res.status(400).json({ error: "Invalid author id" });
-      const user = await User.findById(author);
-      if (!user) return res.status(400).json({ error: "Author not found" });
-      authorId = user._id;
-    }
+    if (!mongoose.Types.ObjectId.isValid(author)) return res.status(400).json({ error: "Invalid author id" });
+    const member = await Member.findById(author);
+    if (!member) return res.status(400).json({ error: "Author not found" });
 
     const newPost = new Post({
       content: content.trim(),
-      author: authorId,
-      authorName: authorName || (authorId ? undefined : "Anonymous"),
+      author: member._id,
+      authorName: member.name,
     });
 
     const saved = await newPost.save();
@@ -64,24 +60,24 @@ router.post("/", async (req, res) => {
   }
 });
 
-// PUT /api/posts/:id/like - toggle like by userId
+// PUT /api/posts/:id/like - toggle like by memberId
 router.put("/:id/like", async (req, res) => {
   try {
     const { id } = req.params;
-    const { userId } = req.body;
+    const { memberId } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json({ error: "Invalid post id" });
-    if (!mongoose.Types.ObjectId.isValid(userId)) return res.status(400).json({ error: "Invalid user id" });
+    if (!mongoose.Types.ObjectId.isValid(memberId)) return res.status(400).json({ error: "Invalid member id" });
 
     const post = await Post.findById(id);
     if (!post) return res.status(404).json({ error: "Post not found" });
 
-    const already = post.likes.users.find((u) => u.toString() === userId);
+    const already = post.likes.users.find((u) => u.toString() === memberId);
     if (already) {
-      post.likes.users = post.likes.users.filter((u) => u.toString() !== userId);
+      post.likes.users = post.likes.users.filter((u) => u.toString() !== memberId);
       post.likes.count = Math.max(0, post.likes.count - 1);
     } else {
-      post.likes.users.push(userId);
+      post.likes.users.push(memberId);
       post.likes.count = (post.likes.count || 0) + 1;
     }
 
@@ -93,11 +89,11 @@ router.put("/:id/like", async (req, res) => {
   }
 });
 
-// DELETE /api/posts/:id - delete post (requires userId in body or simple delete)
+// DELETE /api/posts/:id - delete post (requires memberId in body or simple delete)
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { userId } = req.body;
+    const { memberId } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json({ error: "Invalid post id" });
 
@@ -105,8 +101,8 @@ router.delete("/:id", async (req, res) => {
     if (!post) return res.status(404).json({ error: "Post not found" });
 
     // If author exists, only author can delete. If no author, allow delete.
-    if (post.author && userId) {
-      if (post.author.toString() !== userId) return res.status(403).json({ error: "Not authorized to delete" });
+    if (post.author && memberId) {
+      if (post.author.toString() !== memberId) return res.status(403).json({ error: "Not authorized to delete" });
     }
 
     await Post.deleteOne({ _id: id });
