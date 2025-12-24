@@ -1,13 +1,29 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const { User, Member } = require("../models");
+const { resolveHomeLocation } = require("../utils/homeLocation");
 
 const router = express.Router();
 
 // POST /api/auth/signup
 router.post("/signup", async (req, res) => {
   try {
-    const { email, password, name, year, major, minor, birthday, home, quote, picture, roles, favorites, funFact } = req.body;
+    const {
+      email,
+      password,
+      name,
+      year,
+      major,
+      minor,
+      birthday,
+      home,
+      homeLocation,
+      quote,
+      picture,
+      roles,
+      favorites,
+      funFact,
+    } = req.body;
 
     // Validate input
     if (!email || !password || !name) {
@@ -40,6 +56,9 @@ router.post("/signup", async (req, res) => {
 
     // If no member found, create a new one with all provided data
     if (!member) {
+      const resolvedHomeLocation =
+        homeLocation ?? (home ? await resolveHomeLocation(home) : undefined);
+
       member = new Member({
         name,
         email,
@@ -48,6 +67,7 @@ router.post("/signup", async (req, res) => {
         minor,
         birthday,
         home,
+        homeLocation: resolvedHomeLocation,
         quote,
         picture,
         roles: roles || {
