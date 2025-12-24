@@ -2,6 +2,7 @@ import { Routes, Route, Navigate, Link } from "react-router-dom";
 import MembersPage from "./pages/MembersPage";
 import ProfilePage from "./pages/ProfilePage";
 import FeedPage from "./pages/FeedPage";
+import SignupPage from "./pages/SignupPage";
 
 import "./styles/App.css";
 
@@ -15,6 +16,7 @@ export default function App() {
         <nav className="navLinks">
           <Link to="/members">Members</Link>
           <Link to="/feed">Feed</Link>
+          <Link to="/signup">Sign up</Link>
         </nav>
       </header>
 
@@ -24,6 +26,7 @@ export default function App() {
           <Route path="/members" element={<MembersPage />} />
           <Route path="/feed" element={<FeedPage />} />
           <Route path="/members/:id" element={<ProfilePage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
       </main>
     </div>
