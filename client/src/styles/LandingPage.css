@@ -5,34 +5,36 @@
 }
 
 .landingHero {
-  padding: 32px;
+  padding: 36px;
   border-radius: 28px;
-  border: 1px solid var(--border);
-  background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+  border: 1px solid color-mix(in srgb, var(--white) 65%, var(--teal) 35%);
+  background: linear-gradient(
+    135deg,
+    var(--white) 0%,
+    color-mix(in srgb, var(--yellow) 65%, var(--white) 35%) 100%
+  );
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  box-shadow: 0 18px 32px rgba(17, 17, 17, 0.1);
+  gap: 28px;
+  box-shadow: 0 20px 36px color-mix(in srgb, var(--blue) 40%, transparent);
+  color: var(--teal);
 }
 
 .landingHeroHeader {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 }
 
 .landingLogo {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background: var(--foreground);
-  color: #ffffff;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  padding: 6px;
+  background: var(--white);
+  border: 1px solid color-mix(in srgb, var(--teal) 45%, transparent);
+  box-shadow: 0 10px 18px color-mix(in srgb, var(--blue) 35%, transparent);
+  object-fit: contain;
 }
 
 .landingHeroHeading {
@@ -46,17 +48,18 @@
   letter-spacing: 0.2em;
   font-size: 0.75rem;
   margin: 0;
-  color: var(--muted-foreground);
+  color: var(--coral);
+  font-weight: 700;
 }
 
 .landingTagline {
   font-size: 0.95rem;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
 }
 
 .landingHeroContent {
   display: grid;
-  gap: 24px;
+  gap: 28px;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   align-items: center;
 }
@@ -69,13 +72,14 @@
 
 .landingHero h1 {
   margin: 0;
-  font-size: 2.3rem;
+  font-size: 2.4rem;
+  color: var(--teal);
 }
 
 .landingLead {
   margin: 0;
   font-size: 1.05rem;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
 }
 
 .landingActions {
@@ -97,15 +101,15 @@
 }
 
 .primaryButton {
-  background: var(--foreground);
-  color: #fff;
-  box-shadow: 0 12px 22px rgba(17, 17, 17, 0.16);
+  background: var(--coral);
+  color: var(--white);
+  box-shadow: 0 12px 22px color-mix(in srgb, var(--blue) 40%, transparent);
 }
 
 .secondaryButton {
-  border: 1px solid var(--border);
-  color: inherit;
-  background: #ffffff;
+  border: 1px solid color-mix(in srgb, var(--teal) 60%, transparent);
+  color: var(--teal);
+  background: var(--white);
 }
 
 .primaryButton:hover,
@@ -114,21 +118,23 @@
 }
 
 .landingInfoCard {
-  padding: 20px;
+  padding: 22px;
   border-radius: 20px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 12px 24px rgba(17, 17, 17, 0.08);
+  border: 1px solid color-mix(in srgb, var(--teal) 45%, transparent);
+  background: var(--white);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--blue) 35%, transparent);
+  color: var(--teal);
 }
 
 .landingInfoCard h3 {
   margin-top: 0;
+  color: var(--coral);
 }
 
 .landingInfoCard ul {
   margin: 0;
   padding-left: 18px;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--teal) 80%, var(--blue) 20%);
   display: grid;
   gap: 8px;
 }
@@ -140,18 +146,20 @@
 }
 
 .landingHighlights div {
-  padding: 18px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  box-shadow: 0 12px 22px rgba(17, 17, 17, 0.08);
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--white) 60%, var(--teal) 40%);
+  background: var(--white);
+  box-shadow: 0 12px 22px color-mix(in srgb, var(--blue) 35%, transparent);
+  color: var(--teal);
 }
 
 .landingHighlights h3 {
   margin: 0 0 6px;
+  color: var(--coral);
 }
 
 .landingHighlights p {
   margin: 0;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--teal) 75%, var(--blue) 25%);
 }

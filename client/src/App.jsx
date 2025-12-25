@@ -10,20 +10,23 @@ import "./styles/App.css";
 
 export default function App() {
   const location = useLocation();
-  const isLandingPage = location.pathname === "/";
+  const hideHeaderRoutes = new Set(["/", "/login", "/signup"]);
+  const shouldShowHeader = !hideHeaderRoutes.has(location.pathname);
 
   return (
     <div className="appShell">
-      <header className="appHeader">
-        <Link to="/members" className="brand">
-          DALI Social
-        </Link>
-        <nav className="navLinks">
-          <Link to="/members">Members</Link>
-          <Link to="/feed">Feed</Link>
-          <Link to="/signup">Sign up</Link>
-        </nav>
-      </header>
+      {shouldShowHeader && (
+        <header className="appHeader">
+          <Link to="/members" className="brand">
+            DALI Social
+          </Link>
+          <nav className="navLinks">
+            <Link to="/members">Members</Link>
+            <Link to="/feed">Feed</Link>
+            <Link to="/signup">Sign up</Link>
+          </nav>
+        </header>
+      )}
 
       <main className="appMain">
         <Routes>

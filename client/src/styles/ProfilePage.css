@@ -2,21 +2,23 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  color: var(--white);
 }
 
 .backLink {
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--white) 75%, var(--teal) 25%);
   text-decoration: none;
   width: fit-content;
 }
 
 .backLink:hover {
   text-decoration: underline;
+  color: var(--yellow);
 }
 
 .statusText {
   margin: 0;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--white) 75%, var(--teal) 25%);
 }
 
 .profileCard {
@@ -25,10 +27,11 @@
   gap: 16px;
 
   padding: 16px;
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--white) 60%, var(--teal) 40%);
   border-radius: var(--radius);
-  background: var(--card);
-  box-shadow: 0 12px 24px rgba(17, 17, 17, 0.08);
+  background: var(--white);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--blue) 35%, transparent);
+  color: var(--teal);
 }
 
 @media (max-width: 760px) {
@@ -42,6 +45,7 @@
   height: 180px;
   border-radius: var(--radius);
   object-fit: cover;
+  border: 3px solid color-mix(in srgb, var(--yellow) 75%, var(--white) 25%);
 }
 
 .profileInfo {
@@ -57,7 +61,7 @@
 .profileMeta {
   display: flex;
   gap: 8px;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
 }
 
 .factsGrid {
@@ -74,15 +78,16 @@
 
 .fact {
   padding: 12px;
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--white) 60%, var(--teal) 40%);
   border-radius: 12px;
-  background: var(--card);
-  box-shadow: 0 10px 20px rgba(17, 17, 17, 0.08);
+  background: var(--white);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--blue) 30%, transparent);
+  color: var(--teal);
 }
 
 .factLabel {
   font-size: 12px;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
   margin-bottom: 6px;
 }
 
@@ -92,12 +97,13 @@
 
 .quoteBox {
   padding: 12px;
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--white) 60%, var(--teal) 40%);
   border-radius: 12px;
-  background: var(--card);
-  box-shadow: 0 10px 20px rgba(17, 17, 17, 0.08);
+  background: var(--white);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--blue) 30%, transparent);
+  color: var(--teal);
 }
 
 .quoteText {
-  color: var(--foreground);
+  color: color-mix(in srgb, var(--teal) 80%, var(--blue) 20%);
 }

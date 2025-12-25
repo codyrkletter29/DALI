@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  color: var(--white);
 }
 
 .feedTop {
@@ -16,22 +17,24 @@
 
 .pageSub {
   margin: 0;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--white) 75%, var(--teal) 25%);
 }
 
 .emptyCard {
-  padding: 16px;
-  border: 1px solid var(--border);
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--white) 60%, var(--teal) 40%);
   border-radius: var(--radius);
-  background: var(--card);
-  box-shadow: 0 12px 24px rgba(17, 17, 17, 0.08);
+  background: var(--white);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--blue) 35%, transparent);
+  color: var(--teal);
 }
 
 .emptyTitle {
   font-weight: 700;
   margin-bottom: 6px;
+  color: var(--coral);
 }
 
 .emptyText {
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
 }

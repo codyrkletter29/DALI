@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import daliLogo from "../assets/dali-logo.svg";
 import "../styles/LandingPage.css";
 
 export default function LandingPage() {
@@ -6,9 +7,12 @@ export default function LandingPage() {
     <div className="landingPage">
       <section className="landingHero">
         <div className="landingHeroHeader">
-          <div className="landingLogo" aria-hidden="true">
-            D
-          </div>
+          <img
+            className="landingLogo"
+            src={daliLogo}
+            alt="DALI logo"
+            loading="lazy"
+          />
           <div className="landingHeroHeading">
             <p className="landingEyebrow">DALI Social</p>
             <span className="landingTagline">Member connections, amplified.</span>
