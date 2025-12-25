@@ -91,6 +91,16 @@
   margin-bottom: 6px;
 }
 
+.favoritesList {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.favoritesList li {
+  line-height: 1.4;
+}
+
+
 .factValue {
   font-weight: 500;
 }
