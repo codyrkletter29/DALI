@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  color: var(--white);
 }
 
 .loginHeader {
@@ -16,19 +17,20 @@
 
 .pageSub {
   margin: 0;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--white) 75%, var(--teal) 25%);
 }
 
 .loginForm {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 20px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  background: var(--card);
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--white) 65%, var(--teal) 35%);
+  background: var(--white);
   max-width: 480px;
-  box-shadow: 0 12px 24px rgba(17, 17, 17, 0.08);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--blue) 40%, transparent);
+  color: var(--teal);
 }
 
 .formField {
@@ -41,10 +43,16 @@
 .formField input {
   padding: 10px 12px;
   border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  color: inherit;
+  border: 1px solid color-mix(in srgb, var(--teal) 45%, transparent);
+  background: var(--white);
+  color: var(--teal);
   font-family: inherit;
+}
+
+.formField input:focus {
+  outline: none;
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--coral) 30%, transparent);
 }
 
 .formActions {
@@ -55,12 +63,13 @@
 }
 
 .textLink {
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
   text-decoration: none;
+  font-weight: 600;
 }
 
 .textLink:hover {
-  color: var(--foreground);
+  color: var(--coral);
 }
 
 .formStatus {
@@ -71,15 +80,15 @@
 
 .statusMessage {
   margin: 0;
-  color: var(--muted-foreground);
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
 }
 
 .errorMessage {
   margin: 0;
-  color: #ffb4b4;
+  color: var(--coral);
 }
 
 .requiredLabel::after {
   content: " *";
-  color: #ffb4b4;
+  color: var(--coral);
 }

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  color: var(--white);
 }
 
 .signupHeader {
@@ -16,17 +17,19 @@
 
 .pageSub {
   margin: 0;
-  color: var(--muted-foreground, #8b8b8b);
+  color: color-mix(in srgb, var(--white) 75%, var(--teal) 25%);
 }
 
 .signupForm {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px;
-  border-radius: 16px;
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.2));
-  background: var(--card, rgba(255, 255, 255, 0.06));
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--white) 65%, var(--teal) 35%);
+  background: var(--white);
+  color: var(--teal);
+  box-shadow: 0 16px 30px color-mix(in srgb, var(--blue) 40%, transparent);
 }
 
 .formGrid {
@@ -46,10 +49,17 @@
 .formField textarea {
   padding: 10px 12px;
   border-radius: 10px;
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.2));
-  background: transparent;
-  color: inherit;
+  border: 1px solid color-mix(in srgb, var(--teal) 45%, transparent);
+  background: var(--white);
+  color: var(--teal);
   font-family: inherit;
+}
+
+.formField input:focus,
+.formField textarea:focus {
+  outline: none;
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--coral) 30%, transparent);
 }
 
 .formField textarea {
@@ -59,7 +69,7 @@
 
 .requiredLabel::after {
   content: " *";
-  color: #ffb4b4;
+  color: var(--coral);
 }
 
 .formSection {
@@ -71,22 +81,25 @@
 .sectionTitle {
   margin: 0;
   font-size: 1.1rem;
+  color: var(--coral);
 }
 
 .infoCallout {
   margin: 0;
   padding: 12px 14px;
   border-radius: 12px;
-  background: rgba(100, 108, 255, 0.12);
+  background: color-mix(in srgb, var(--yellow) 70%, var(--white) 30%);
+  color: color-mix(in srgb, var(--teal) 80%, var(--blue) 20%);
 }
 
 .formActions {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .rolesFieldset {
-  border: 1px solid var(--border, rgba(255, 255, 255, 0.2));
+  border: 1px solid color-mix(in srgb, var(--teal) 50%, transparent);
   border-radius: 12px;
   padding: 12px 16px;
   display: grid;
@@ -96,6 +109,7 @@
 
 .rolesFieldset legend {
   padding: 0 8px;
+  color: var(--coral);
 }
 
 .formStatus {
@@ -106,10 +120,10 @@
 
 .statusMessage {
   margin: 0;
-  color: var(--muted-foreground, #8b8b8b);
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
 }
 
 .errorMessage {
   margin: 0;
-  color: #ffb4b4;
+  color: var(--coral);
 }

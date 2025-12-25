@@ -1,29 +1,33 @@
 :root {
   --font-size: 16px;
-  --background: #d1e5e6;
-  --foreground: #111111;
 
-  --card: #ffffff;
-  --card-foreground: #111111;
+  --white: #ffffff;
+  --yellow: #ffdb79;
+  --teal: #5fcac4;
+  --coral: #ff8b81;
+  --blue: #1f4d8f;
 
-  --primary: #030213;
-  --primary-foreground: #ffffff;
+  --background: var(--teal);
+  --foreground: var(--white);
 
-  --muted: rgba(255, 255, 255, 0.65);
-  --muted-foreground: #5b6a6b;
+  --card: var(--white);
+  --card-foreground: var(--teal);
 
-  --accent: #d1e5e6;
-  --accent-foreground: #111111;
+  --primary: var(--teal);
+  --primary-foreground: var(--white);
 
-  --destructive: #d4183d;
-  --destructive-foreground: #ffffff;
+  --muted: color-mix(in srgb, var(--white) 70%, transparent);
+  --muted-foreground: color-mix(in srgb, var(--white) 70%, var(--teal) 30%);
 
-  --border: rgba(17, 17, 17, 0.12);
+  --accent: var(--yellow);
+  --accent-foreground: var(--blue);
 
-  --radius: 10px;
-  --dali-mint-1: #d1e5e6;
-  --dali-mint-2: #d1e5e6;
-  --dali-mint-3: #d1e5e6;
+  --destructive: var(--coral);
+  --destructive-foreground: var(--white);
+
+  --border: color-mix(in srgb, var(--white) 60%, var(--teal) 40%);
+
+  --radius: 18px;
 
   /* simple type scale */
   --text-base: 16px;
@@ -36,11 +40,11 @@
 }
 
 .dark {
-  --background: #111111;
-  --foreground: #f5f5f5;
-  --card: #111111;
-  --card-foreground: #f5f5f5;
-  --border: rgba(255, 255, 255, 0.18);
+  --background: #0f1f3d;
+  --foreground: var(--white);
+  --card: #14244a;
+  --card-foreground: var(--white);
+  --border: color-mix(in srgb, var(--white) 20%, transparent);
 }
 
 * {
@@ -53,9 +57,15 @@ html {
 
 body {
   margin: 0;
-  background: var(--background);
+  min-height: 100vh;
+  background: radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--yellow) 35%, var(--teal) 65%),
+      var(--teal)
+    );
   color: var(--foreground);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto,
+    Arial, sans-serif;
 }
 
 h1 {
@@ -77,7 +87,8 @@ h3 {
   line-height: 1.5;
 }
 
-label, button {
+label,
+button {
   font-size: var(--text-base);
   font-weight: var(--font-weight-medium);
   line-height: 1.5;
@@ -95,18 +106,18 @@ a {
 
 button {
   border: none;
-  background: var(--foreground);
-  color: #ffffff;
+  background: var(--coral);
+  color: var(--white);
   padding: 10px 16px;
   border-radius: 999px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 10px 20px rgba(17, 17, 17, 0.12);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--blue) 45%, transparent);
 }
 
 button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 24px rgba(17, 17, 17, 0.16);
+  box-shadow: 0 16px 28px color-mix(in srgb, var(--blue) 55%, transparent);
 }
 
 button:disabled {
