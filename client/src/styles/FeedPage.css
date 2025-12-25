@@ -24,6 +24,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--card);
+  box-shadow: 0 12px 24px rgba(17, 17, 17, 0.08);
 }
 
 .emptyTitle {

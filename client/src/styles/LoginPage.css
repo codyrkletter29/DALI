@@ -1,0 +1,85 @@
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.loginHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pageTitle {
+  margin: 0;
+}
+
+.pageSub {
+  margin: 0;
+  color: var(--muted-foreground);
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  max-width: 480px;
+  box-shadow: 0 12px 24px rgba(17, 17, 17, 0.08);
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.formField input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: inherit;
+  font-family: inherit;
+}
+
+.formActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.textLink {
+  color: var(--muted-foreground);
+  text-decoration: none;
+}
+
+.textLink:hover {
+  color: var(--foreground);
+}
+
+.formStatus {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statusMessage {
+  margin: 0;
+  color: var(--muted-foreground);
+}
+
+.errorMessage {
+  margin: 0;
+  color: #ffb4b4;
+}
+
+.requiredLabel::after {
+  content: " *";
+  color: #ffb4b4;
+}

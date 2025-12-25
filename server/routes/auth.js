@@ -5,6 +5,32 @@ const { resolveHomeLocation } = require("../utils/homeLocation");
 
 const router = express.Router();
 
+const escapeRegExp = (value) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+// GET /api/auth/check-name
+router.get("/check-name", async (req, res) => {
+  try {
+    const name = req.query.name?.trim();
+    if (!name) {
+      return res.status(400).json({
+        error: "Name is required",
+      });
+    }
+
+    const member = await Member.findOne({
+      name: { $regex: `^${escapeRegExp(name)}$`, $options: "i" },
+    }).select("_id");
+
+    return res.json({ exists: Boolean(member) });
+  } catch (error) {
+    console.error("Check name error:", error);
+    return res.status(500).json({
+      error: "Name check failed",
+    });
+  }
+});
+
 // POST /api/auth/signup
 router.post("/signup", async (req, res) => {
   try {
