@@ -1,0 +1,11 @@
+{
+  "name": "monorepo-root",
+  "private": true,
+  "scripts": {
+    "heroku-postbuild": "npm --prefix server install",
+    "start": "npm --prefix server start"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}

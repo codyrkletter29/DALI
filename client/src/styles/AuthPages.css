@@ -1,0 +1,131 @@
+.authPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.authContainer {
+  width: 100%;
+  max-width: 400px;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.authContainer h1 {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+}
+
+.authSubtitle {
+  margin: 0 0 24px 0;
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.formGroup input {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--foreground);
+}
+
+.submitButton {
+  padding: 12px 16px;
+  background: var(--foreground);
+  color: var(--background);
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  padding: 12px;
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: var(--radius);
+  color: #ff0000;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.authFooter {
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+.authFooter a {
+  color: var(--foreground);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.authFooter a:hover {
+  text-decoration: underline;
+}
+
+.demoCredentials {
+  margin-top: 20px;
+  padding: 12px;
+  background: rgba(100, 150, 200, 0.1);
+  border: 1px solid rgba(100, 150, 200, 0.3);
+  border-radius: var(--radius);
+  font-size: 12px;
+}
+
+.demoTitle {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.demoCredentials ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.demoCredentials li {
+  margin: 4px 0;
+  color: var(--muted-foreground);
+}
