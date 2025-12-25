@@ -26,17 +26,17 @@ export default function App() {
           <Link to="/members" className="brand">
             DALI Social
           </Link>
-          <nav className="navLinks">
-            <Link to="/members">Members</Link>
-            <Link to="/feed">Feed</Link>
-            <button
-              type="button"
-              className="logoutButton"
-              onClick={handleLogout}
-            >
-              Log out
-            </button>
-          </nav>
+        <nav className="nav">
+          <Link to="/members" className="navItem">Members</Link>
+          <Link to="/feed" className="navItem">Feed</Link>
+          <button
+            type="button"
+            className="navItem navItemLogout"
+            onClick={handleLogout}
+          >
+            Log out
+          </button>
+        </nav>
         </header>
       )}
 
