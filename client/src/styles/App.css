@@ -41,8 +41,19 @@
   font-weight: 600;
 }
 
-.navLinks a:hover {
+.navLinks a:hover,
+.logoutButton:hover {
   color: var(--coral);
+}
+
+.logoutButton {
+  border: none;
+  background: transparent;
+  color: var(--teal);
+  font-weight: 600;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
 }
 
 .appMain {

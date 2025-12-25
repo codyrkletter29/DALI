@@ -1,4 +1,5 @@
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 import MembersPage from "./pages/MembersPage";
 import ProfilePage from "./pages/ProfilePage";
 import FeedPage from "./pages/FeedPage";
@@ -10,8 +11,13 @@ import "./styles/App.css";
 
 export default function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   const hideHeaderRoutes = new Set(["/", "/login", "/signup"]);
   const shouldShowHeader = !hideHeaderRoutes.has(location.pathname);
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem("user");
+    navigate("/");
+  }, [navigate]);
 
   return (
     <div className="appShell">
@@ -23,7 +29,13 @@ export default function App() {
           <nav className="navLinks">
             <Link to="/members">Members</Link>
             <Link to="/feed">Feed</Link>
-            <Link to="/signup">Sign up</Link>
+            <button
+              type="button"
+              className="logoutButton"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
           </nav>
         </header>
       )}
