@@ -29,32 +29,55 @@
   text-decoration: none;
   letter-spacing: 0.02em;
 }
-
-.navLinks {
+/* nav container */
+.nav {
   display: flex;
-  gap: 16px;
+  align-items: center;
+  gap: 12px;
 }
 
-.navLinks a {
-  text-decoration: none;
+/* shared text style */
+.navItem {
   color: var(--teal);
   font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.navLinks a:hover,
-.logoutButton:hover {
+.navItem:hover {
   color: var(--coral);
 }
 
-.logoutButton {
-  border: none;
-  background: transparent;
-  color: var(--teal);
-  font-weight: 600;
+/* Fully reset the button */
+button.navItem {
+  background: transparent !important;
+  border: 0;
+  padding: 0;
   font: inherit;
-  cursor: pointer;
+  color: inherit;
+  line-height: inherit;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Firefox extra reset */
+button.navItem::-moz-focus-inner {
+  border: 0;
   padding: 0;
 }
+
+.navItemLogout {
+  font-weight: 700; /* bold */
+}
+.navItemLogout:hover {
+  font-weight: 700;
+}
+
+
 
 .appMain {
   max-width: 1040px;
