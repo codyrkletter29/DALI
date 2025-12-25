@@ -27,7 +27,11 @@ export default function ProfilePage() {
 
       <p className="statusText">{status}</p>
 
-      {member && (
+      {member && (() => {
+      const { favorites = {} } = member;
+      const { thing1, thing2, thing3, dartmouthTradition } = favorites;
+
+      return (
         <div className="profileCard">
           <img className="profileAvatar" src={member.picture} alt={member.name} />
 
@@ -45,17 +49,28 @@ export default function ProfilePage() {
                 <div className="factLabel">Home</div>
                 <div className="factValue">{member.home}</div>
               </div>
+
               <div className="fact">
                 <div className="factLabel">Birthday</div>
                 <div className="factValue">{member.birthday}</div>
               </div>
+
               <div className="fact">
-                <div className="factLabel">Favorite thing</div>
-                <div className="factValue">{member["favorite thing 1"]}</div>
+                <div className="factLabel">Favorites</div>
+                <div className="factValue">
+                  <ul className="favoritesList">
+                    {thing1 && <li>{thing1}</li>}
+                    {thing2 && <li>{thing2}</li>}
+                    {thing3 && <li>{thing3}</li>}
+                  </ul>
+                </div>
               </div>
+
               <div className="fact">
-                <div className="factLabel">Tradition</div>
-                <div className="factValue">{member["favorite dartmouth tradition"]}</div>
+                <div className="factLabel">Dartmouth Tradition</div>
+                <div className="factValue">
+                  {dartmouthTradition || "—"}
+                </div>
               </div>
             </div>
 
@@ -65,7 +80,8 @@ export default function ProfilePage() {
             </div>
           </div>
         </div>
-      )}
+      );
+    })()}
     </div>
   );
 }

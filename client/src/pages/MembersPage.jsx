@@ -54,9 +54,6 @@ export default function MembersPage() {
               <div className="memberMeta">
                 {m.major} • {m.year}
               </div>
-              <div className="memberFav">
-                Favorite: {m["favorite thing 1"]}
-              </div>
             </div>
           </Link>
         ))}
