@@ -1,6 +1,6 @@
 :root {
   --font-size: 16px;
-  --background: #ffffff;
+  --background: #d1e5e6;
   --foreground: #111111;
 
   --card: #ffffff;
@@ -9,18 +9,21 @@
   --primary: #030213;
   --primary-foreground: #ffffff;
 
-  --muted: #ececf0;
-  --muted-foreground: #717182;
+  --muted: rgba(255, 255, 255, 0.65);
+  --muted-foreground: #5b6a6b;
 
-  --accent: #e9ebef;
-  --accent-foreground: #030213;
+  --accent: #d1e5e6;
+  --accent-foreground: #111111;
 
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
 
-  --border: rgba(0, 0, 0, 0.1);
+  --border: rgba(17, 17, 17, 0.12);
 
   --radius: 10px;
+  --dali-mint-1: #d1e5e6;
+  --dali-mint-2: #d1e5e6;
+  --dali-mint-3: #d1e5e6;
 
   /* simple type scale */
   --text-base: 16px;
@@ -88,4 +91,27 @@ input {
 
 a {
   color: inherit;
+}
+
+button {
+  border: none;
+  background: var(--foreground);
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 20px rgba(17, 17, 17, 0.12);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(17, 17, 17, 0.16);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
