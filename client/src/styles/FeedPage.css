@@ -20,6 +20,169 @@
   color: color-mix(in srgb, var(--white) 75%, var(--teal) 25%);
 }
 
+.postComposer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--white) 65%, var(--teal) 35%);
+  background: var(--white);
+  box-shadow: 0 16px 32px color-mix(in srgb, var(--blue) 35%, transparent);
+  color: var(--teal);
+}
+
+.composerHeader {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.composerAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--yellow) 50%, var(--white) 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--teal);
+  border: 1px solid color-mix(in srgb, var(--teal) 35%, transparent);
+}
+
+.composerAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.composerTitle {
+  font-weight: 700;
+}
+
+.composerSubtitle {
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
+  font-size: 0.95rem;
+}
+
+.composerInput {
+  min-height: 96px;
+  resize: vertical;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--teal) 45%, transparent);
+  background: color-mix(in srgb, var(--white) 94%, var(--yellow) 6%);
+  color: var(--teal);
+  font-family: inherit;
+}
+
+.composerInput:focus {
+  outline: none;
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--coral) 25%, transparent);
+}
+
+.composerFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.charCount {
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
+}
+
+.postsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.postCard {
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--white) 65%, var(--teal) 35%);
+  background: var(--white);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--blue) 35%, transparent);
+  color: var(--teal);
+}
+
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.postAuthor {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.authorAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--blue) 18%, var(--white) 82%);
+  border: 1px solid color-mix(in srgb, var(--teal) 35%, transparent);
+  font-weight: 700;
+}
+
+.authorName {
+  font-weight: 700;
+}
+
+.postMeta {
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
+}
+
+.postContent {
+  margin: 0 0 16px;
+  white-space: pre-wrap;
+}
+
+.postActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.likeButton {
+  background: color-mix(in srgb, var(--coral) 20%, var(--white) 80%);
+  color: var(--coral);
+  border: 1px solid color-mix(in srgb, var(--coral) 45%, transparent);
+  box-shadow: none;
+  padding: 8px 14px;
+}
+
+.likeButton:hover {
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+.likeButton.liked {
+  background: var(--coral);
+  color: var(--white);
+}
+
+.likeButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.likeCount {
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
+}
+
 .emptyCard {
   padding: 18px;
   border: 1px solid color-mix(in srgb, var(--white) 60%, var(--teal) 40%);
