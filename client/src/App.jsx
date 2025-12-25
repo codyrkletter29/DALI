@@ -3,8 +3,6 @@ import MembersPage from "./pages/MembersPage";
 import ProfilePage from "./pages/ProfilePage";
 import FeedPage from "./pages/FeedPage";
 import SignupPage from "./pages/SignupPage";
-import LandingPage from "./pages/LandingPage";
-import LoginPage from "./pages/LoginPage";
 
 import "./styles/App.css";
 
@@ -14,19 +12,16 @@ export default function App() {
 
   return (
     <div className="appShell">
-      {!isLandingPage && (
-        <header className="appHeader">
-          <Link to="/members" className="brand">
-            DALI Social
-          </Link>
-          <nav className="navLinks">
-            <Link to="/members">Members</Link>
-            <Link to="/feed">Feed</Link>
-            <Link to="/login">Log in</Link>
-            <Link to="/signup">Sign up</Link>
-          </nav>
-        </header>
-      )}
+      <header className="appHeader">
+        <Link to="/members" className="brand">
+          DALI Social
+        </Link>
+        <nav className="navLinks">
+          <Link to="/members">Members</Link>
+          <Link to="/feed">Feed</Link>
+          <Link to="/signup">Sign up</Link>
+        </nav>
+      </header>
 
       <main className="appMain">
         <Routes>
