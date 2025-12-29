@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  createPost,
-  fetchPosts,
-  togglePostLike,
-} from "../api/posts";
+import { createPost, fetchPosts, togglePostLike } from "../api/posts";
+import { fetchMember } from "../api/members";
+import MemberProfileCard from "../components/MemberProfileCard";
 import "../styles/FeedPage.css";
+import "../styles/ProfilePage.css";
 
 const formatTimestamp = (value) => {
   if (!value) return "";
@@ -26,6 +25,10 @@ export default function FeedPage() {
   const [content, setContent] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [pendingLikes, setPendingLikes] = useState([]);
+  const [activeMemberId, setActiveMemberId] = useState(null);
+  const [activeMember, setActiveMember] = useState(null);
+  const [profileStatus, setProfileStatus] = useState("");
+  const [likesPost, setLikesPost] = useState(null);
 
   const currentUser = useMemo(() => {
     try {
@@ -59,6 +62,29 @@ export default function FeedPage() {
       isMounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (!activeMemberId) return;
+    let isMounted = true;
+    setProfileStatus("Loading profile...");
+    setActiveMember(null);
+
+    fetchMember(activeMemberId)
+      .then((data) => data.member)
+      .then((member) => {
+        if (!isMounted) return;
+        setActiveMember(member);
+        setProfileStatus("");
+      })
+      .catch(() => {
+        if (!isMounted) return;
+        setProfileStatus("Failed to load profile.");
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [activeMemberId]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -166,26 +192,39 @@ export default function FeedPage() {
         <div className="postsList">
           {posts.map((post) => {
             const likedByUser = post.likes?.users?.some(
-              (id) => String(id) === String(currentMember?.id)
+              (user) =>
+                String(user?._id || user) === String(currentMember?.id)
             );
             const likeCount = post.likes?.count ?? 0;
             const authorName =
               post.authorName || post.author?.name || "Unknown";
+            const authorId = post.author?._id || post.author;
+            const authorPicture = post.author?.picture;
             const timestamp = formatTimestamp(post.createdAt || post.updatedAt);
 
             return (
               <article key={post._id} className="postCard">
                 <div className="postHeader">
                   <div className="postAuthor">
-                    <div className="authorAvatar">
-                      <span>{authorName[0]}</span>
-                    </div>
-                    <div>
-                      <div className="authorName">{authorName}</div>
-                      {timestamp && (
-                        <div className="postMeta">{timestamp}</div>
-                      )}
-                    </div>
+                    <button
+                      type="button"
+                      className="authorButton"
+                      onClick={() => authorId && setActiveMemberId(authorId)}
+                    >
+                      <div className="authorAvatar">
+                        {authorPicture ? (
+                          <img src={authorPicture} alt={authorName} />
+                        ) : (
+                          <span>{authorName[0]}</span>
+                        )}
+                      </div>
+                      <div>
+                        <div className="authorName">{authorName}</div>
+                        {timestamp && (
+                          <div className="postMeta">{timestamp}</div>
+                        )}
+                      </div>
+                    </button>
                   </div>
                 </div>
 
@@ -200,13 +239,95 @@ export default function FeedPage() {
                   >
                     {likedByUser ? "♥ Liked" : "♡ Like"}
                   </button>
-                  <span className="likeCount">
+                  <button
+                    type="button"
+                    className="likeCountButton"
+                    onClick={() => setLikesPost(post)}
+                    disabled={likeCount === 0}
+                  >
                     {likeCount} {likeCount === 1 ? "like" : "likes"}
-                  </span>
+                  </button>
                 </div>
               </article>
             );
           })}
+        </div>
+      )}
+
+      {activeMemberId && (
+        <div className="modalOverlay" onClick={() => setActiveMemberId(null)}>
+          <div
+            className="modalContent"
+            onClick={(event) => event.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="modalHeader">
+              <h3>Member Profile</h3>
+              <button
+                type="button"
+                className="modalClose"
+                onClick={() => setActiveMemberId(null)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="modalBody">
+              {profileStatus && (
+                <p className="modalStatus">{profileStatus}</p>
+              )}
+              {activeMember && <MemberProfileCard member={activeMember} />}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {likesPost && (
+        <div className="modalOverlay" onClick={() => setLikesPost(null)}>
+          <div
+            className="modalContent modalCompact"
+            onClick={(event) => event.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="modalHeader">
+              <h3>Liked by</h3>
+              <button
+                type="button"
+                className="modalClose"
+                onClick={() => setLikesPost(null)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="modalBody">
+              {likesPost.likes?.users?.length ? (
+                <ul className="likesList">
+                  {likesPost.likes.users.map((user, index) => {
+                    const userName = user?.name || "Member";
+                    const userPicture = user?.picture;
+                    return (
+                      <li
+                        key={user?._id || `${userName}-${index}`}
+                        className="likesItem"
+                      >
+                        <div className="likesAvatar">
+                          {userPicture ? (
+                            <img src={userPicture} alt={userName} />
+                          ) : (
+                            <span>{userName[0]}</span>
+                          )}
+                        </div>
+                        <span>{userName}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <p className="modalStatus">No likes yet.</p>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
