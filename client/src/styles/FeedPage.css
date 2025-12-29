@@ -90,6 +90,31 @@
   justify-content: space-between;
 }
 
+.composerFooter button {
+  background: var(--coral);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--coral) 40%, transparent);
+}
+
+.composerFooter button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--coral) 90%, var(--white) 10%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--coral) 50%, transparent);
+}
+
+.composerFooter button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--coral) 40%, transparent);
+}
+
 .charCount {
   font-size: 0.9rem;
   color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
@@ -127,19 +152,28 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  background: none;
+  background: transparent;
   border: none;
-  padding: 0;
+  padding: 6px;
   color: inherit;
   font: inherit;
   text-align: left;
   cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  box-shadow: none !important;
+}
+
+.authorButton:hover {
+  background: color-mix(in srgb, var(--teal) 12%, transparent);
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .authorButton:focus-visible {
   outline: 2px solid var(--coral);
   outline-offset: 3px;
-  border-radius: 999px;
+  border-radius: 12px;
 }
 
 .authorAvatar {
@@ -181,40 +215,62 @@
 }
 
 .likeButton {
-  background: color-mix(in srgb, var(--coral) 20%, var(--white) 80%);
+  background: transparent;
   color: var(--coral);
   border: 1px solid color-mix(in srgb, var(--coral) 45%, transparent);
-  box-shadow: none;
+  box-shadow: none !important;
   padding: 8px 14px;
+  transition: all 0.2s ease;
 }
 
 .likeButton:hover {
-  box-shadow: none;
-  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--coral) 15%, transparent);
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 .likeButton.liked {
-  background: var(--coral);
-  color: var(--white);
+  background: color-mix(in srgb, var(--coral) 20%, transparent);
+  color: var(--coral);
+  border-color: var(--coral);
+}
+
+.likeButton.liked:hover {
+  background: color-mix(in srgb, var(--coral) 30%, transparent);
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 .likeButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 .likeCountButton {
   font-size: 0.9rem;
   color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
-  background: none;
+  background: transparent;
   border: none;
-  padding: 0;
+  padding: 6px 10px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  box-shadow: none !important;
+}
+
+.likeCountButton:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--teal) 15%, transparent);
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .likeCountButton:disabled {
   cursor: not-allowed;
   opacity: 0.6;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 .emptyCard {
@@ -279,10 +335,21 @@
   height: 36px;
   border-radius: 50%;
   border: none;
-  background: color-mix(in srgb, var(--coral) 20%, var(--white) 80%);
+  background: transparent;
   color: var(--coral);
   font-size: 1.4rem;
   cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none !important;
+}
+
+.modalClose:hover {
+  background: color-mix(in srgb, var(--coral) 15%, transparent);
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .modalBody {
@@ -308,8 +375,35 @@
 .likesItem {
   display: flex;
   align-items: center;
+}
+
+.likesItemButton {
+  display: flex;
+  align-items: center;
   gap: 12px;
   font-weight: 600;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  box-shadow: none !important;
+}
+
+.likesItemButton:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--teal) 12%, transparent);
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.likesItemButton:disabled {
+  cursor: default;
+  box-shadow: none !important;
 }
 
 .likesAvatar {
@@ -323,6 +417,7 @@
   justify-content: center;
   font-weight: 700;
   border: 1px solid color-mix(in srgb, var(--teal) 35%, transparent);
+  flex-shrink: 0;
 }
 
 .likesAvatar img {
