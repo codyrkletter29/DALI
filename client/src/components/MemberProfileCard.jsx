@@ -1,7 +1,15 @@
 export default function MemberProfileCard({ member }) {
   if (!member) return null;
-  const { favorites = {} } = member;
+  const { favorites = {}, roles = {} } = member;
   const { thing1, thing2, thing3, dartmouthTradition } = favorites;
+
+  // Build roles array
+  const memberRoles = [];
+  if (roles.dev) memberRoles.push("Developer");
+  if (roles.des) memberRoles.push("Designer");
+  if (roles.pm) memberRoles.push("Product Manager");
+  if (roles.core) memberRoles.push("Core Team");
+  if (roles.mentor) memberRoles.push("Mentor");
 
   return (
     <div className="profileCard">
@@ -15,6 +23,16 @@ export default function MemberProfileCard({ member }) {
           <span>•</span>
           <span>{member.year || "Year TBD"}</span>
         </div>
+
+        {memberRoles.length > 0 && (
+          <div className="profileRoles">
+            {memberRoles.map((role, idx) => (
+              <span key={idx} className="roleBadge">
+                {role}
+              </span>
+            ))}
+          </div>
+        )}
 
         <div className="factsGrid">
           <div className="fact">
