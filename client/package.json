@@ -11,8 +11,10 @@
     "deploy": "npm run build && git add dist -f && git commit -m 'deploy' && git push origin $(git rev-parse --abbrev-ref HEAD)"
   },
   "dependencies": {
+    "leaflet": "^1.9.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.11.0"
   },
   "devDependencies": {
