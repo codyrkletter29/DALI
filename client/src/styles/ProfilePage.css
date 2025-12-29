@@ -64,6 +64,24 @@
   color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
 }
 
+.profileRoles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.roleBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--coral) 15%, var(--white));
+  color: var(--coral);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid color-mix(in srgb, var(--coral) 30%, transparent);
+}
+
 .factsGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -3,11 +3,11 @@ const { Member } = require("../models");
 
 const router = express.Router();
 
-// GET /api/members?search=andy&dev=true
+// GET /api/members?search=andy&role=dev
 router.get("/", async (req, res) => {
   try {
     const search = (req.query.search || "").trim();
-    const devOnly = req.query.dev === "true";
+    const role = req.query.role;
 
     const filter = {};
 
@@ -15,8 +15,14 @@ router.get("/", async (req, res) => {
       filter.name = { $regex: search, $options: "i" };
     }
 
-    if (devOnly) {
-      filter["roles.dev"] = true;
+    if (role) {
+      const allowedRoles = ["dev", "des", "pm", "core", "mentor"];
+      if (!allowedRoles.includes(role)) {
+        return res.status(400).json({
+          error: `Invalid role. Must be one of: ${allowedRoles.join(", ")}`,
+        });
+      }
+      filter[`roles.${role}`] = true;
     }
 
     const members = await Member.find(filter).lean();

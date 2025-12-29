@@ -57,6 +57,22 @@
   color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
 }
 
+.roleSelector {
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--teal) 45%, transparent);
+  border-radius: 10px;
+  outline: none;
+  background: var(--white);
+  color: var(--teal);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.roleSelector:focus {
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--coral) 25%, transparent);
+}
+
 .membersGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -117,4 +133,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.memberRoles {
+  font-size: 12px;
+  color: color-mix(in srgb, var(--coral) 80%, var(--teal) 20%);
+  font-weight: 500;
 }

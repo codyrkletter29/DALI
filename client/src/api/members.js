@@ -8,10 +8,10 @@ export async function fetchMember(id) {
   return response.json();
 }
 
-export async function fetchMembers({ search = "", devOnly = false } = {}) {
+export async function fetchMembers({ search = "", role = "" } = {}) {
   const params = new URLSearchParams();
   if (search) params.set("search", search);
-  if (devOnly) params.set("dev", "true");
+  if (role) params.set("role", role);
   const query = params.toString();
   const response = await fetch(
     `${BASE_URL}/api/members${query ? `?${query}` : ""}`
