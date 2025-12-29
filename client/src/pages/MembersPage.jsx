@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { fetchMembers } from "../api/members";
+import { AuthContext } from "../context/AuthContext";
+import RecommendedConnections from "../components/RecommendedConnections";
 import "../styles/MembersPage.css";
 
 export default function MembersPage() {
@@ -8,6 +10,15 @@ export default function MembersPage() {
   const [status, setStatus] = useState("");
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
+  
+  // Safely access AuthContext - it might not be provided
+  let user = null;
+  try {
+    const context = useContext(AuthContext);
+    user = context?.user;
+  } catch (e) {
+    // AuthContext not provided, user will remain null
+  }
 
   useEffect(() => {
     setStatus("Loading members...");
@@ -19,6 +30,9 @@ export default function MembersPage() {
       })
       .catch(() => setStatus("Failed to load members"));
   }, [search, roleFilter]);
+
+  // Use current user's memberId if available, otherwise use first member's ID
+  const currentUserId = user?.memberId || (members.length > 0 ? members[0].id : null);
 
   return (
     <div className="membersPage">
@@ -74,6 +88,8 @@ export default function MembersPage() {
           );
         })}
       </div>
+
+      {currentUserId && <RecommendedConnections currentUserId={currentUserId} />}
     </div>
   );
 }

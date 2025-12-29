@@ -19,3 +19,14 @@ export async function fetchMembers({ search = "", role = "" } = {}) {
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   return response.json();
 }
+
+export async function fetchSimilarMembers(memberId, limit = 10) {
+  const params = new URLSearchParams();
+  if (limit) params.set("limit", limit.toString());
+  const query = params.toString();
+  const response = await fetch(
+    `${BASE_URL}/api/members/${memberId}/similar${query ? `?${query}` : ""}`
+  );
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
+}
