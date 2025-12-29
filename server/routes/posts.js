@@ -4,12 +4,20 @@ const { Post, Member } = require("../models");
 
 const router = express.Router();
 
+const postPopulate = [
+  { path: "author", select: "name picture" },
+  { path: "likes.users", select: "name picture" },
+];
+
+const loadPost = (id) =>
+  Post.findById(id).populate(postPopulate).lean();
+
 // GET /api/posts - list posts (newest first)
 router.get("/", async (req, res) => {
   try {
     const posts = await Post.find({})
       .sort({ createdAt: -1 })
-      .populate("author", "name")
+      .populate(postPopulate)
       .lean();
 
     res.json({ success: true, posts });
@@ -25,7 +33,7 @@ router.get("/:id", async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json({ error: "Invalid post id" });
 
-    const post = await Post.findById(id).populate("author", "name").lean();
+    const post = await loadPost(id);
     if (!post) return res.status(404).json({ error: "Post not found" });
 
     res.json({ success: true, post });
@@ -53,7 +61,8 @@ router.post("/", async (req, res) => {
     });
 
     const saved = await newPost.save();
-    res.status(201).json({ success: true, post: saved });
+    const populated = await loadPost(saved._id);
+    res.status(201).json({ success: true, post: populated });
   } catch (err) {
     console.error("POST /api/posts error:", err);
     res.status(500).json({ error: "Failed to create post" });
@@ -82,7 +91,8 @@ router.put("/:id/like", async (req, res) => {
     }
 
     await post.save();
-    res.json({ success: true, post });
+    const populated = await loadPost(post._id);
+    res.json({ success: true, post: populated });
   } catch (err) {
     console.error("PUT /api/posts/:id/like error:", err);
     res.status(500).json({ error: "Failed to toggle like" });

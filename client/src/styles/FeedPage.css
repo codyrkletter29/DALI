@@ -123,6 +123,25 @@
   align-items: center;
 }
 
+.authorButton {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.authorButton:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
 .authorAvatar {
   width: 40px;
   height: 40px;
@@ -133,6 +152,12 @@
   background: color-mix(in srgb, var(--blue) 18%, var(--white) 82%);
   border: 1px solid color-mix(in srgb, var(--teal) 35%, transparent);
   font-weight: 700;
+}
+
+.authorAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .authorName {
@@ -178,9 +203,18 @@
   cursor: not-allowed;
 }
 
-.likeCount {
+.likeCountButton {
   font-size: 0.9rem;
   color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.likeCountButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .emptyCard {
@@ -200,4 +234,99 @@
 
 .emptyText {
   color: color-mix(in srgb, var(--teal) 70%, var(--blue) 30%);
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 35, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 20;
+}
+
+.modalContent {
+  width: min(720px, 92vw);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--white);
+  color: var(--teal);
+  border-radius: 24px;
+  border: 1px solid color-mix(in srgb, var(--teal) 30%, transparent);
+  box-shadow: 0 24px 44px rgba(16, 30, 56, 0.25);
+  padding: 24px;
+}
+
+.modalCompact {
+  width: min(480px, 92vw);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modalHeader h3 {
+  margin: 0;
+}
+
+.modalClose {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: color-mix(in srgb, var(--coral) 20%, var(--white) 80%);
+  color: var(--coral);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalStatus {
+  margin: 0;
+  color: color-mix(in srgb, var(--teal) 75%, var(--blue) 25%);
+}
+
+.likesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.likesItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.likesAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--yellow) 50%, var(--white) 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border: 1px solid color-mix(in srgb, var(--teal) 35%, transparent);
+}
+
+.likesAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
