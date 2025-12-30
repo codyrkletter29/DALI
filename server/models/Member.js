@@ -13,7 +13,7 @@ const memberSchema = new mongoose.Schema(
     },
     year: {
       type: String,
-      enum: ["2024", "2025", "2026", "2027"],
+      enum: ["2024", "2025", "2026", "2027", "2028", "2029"],
     },
     major: String,
     minor: String,

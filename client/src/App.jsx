@@ -6,6 +6,7 @@ import FeedPage from "./pages/FeedPage";
 import SignupPage from "./pages/SignupPage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
+import MapPage from "./pages/MapPage";
 
 import "./styles/App.css";
 
@@ -29,6 +30,7 @@ export default function App() {
         <nav className="nav">
           <Link to="/members" className="navItem">Members</Link>
           <Link to="/feed" className="navItem">Feed</Link>
+          <Link to="/map" className="navItem">Map</Link>
           <button
             type="button"
             className="navItem navItemLogout"
@@ -46,6 +48,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/members" element={<MembersPage />} />
           <Route path="/feed" element={<FeedPage />} />
+          <Route path="/map" element={<MapPage />} />
           <Route path="/members/:id" element={<ProfilePage />} />
           <Route path="/signup" element={<SignupPage />} />
         </Routes>

@@ -6,7 +6,6 @@ const authRoutes = require("./routes/auth");
 const postsRoutes = require("./routes/posts");
 const statsRoutes = require("./routes/stats");
 const birthdaysRoutes = require("./routes/birthdays");
-const mapRoutes = require("./routes/map");
 const membersRoutes = require("./routes/members");
 
 const app = express();
@@ -26,8 +25,6 @@ app.use("/api/posts", postsRoutes);
 app.use("/api/stats", statsRoutes);
 // Mount birthday routes
 app.use("/api/birthdays", birthdaysRoutes);
-// Mount map routes
-app.use("/api/map", mapRoutes);
 // Mount members routes
 app.use("/api/members", membersRoutes);
 

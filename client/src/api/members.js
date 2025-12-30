@@ -8,13 +8,24 @@ export async function fetchMember(id) {
   return response.json();
 }
 
-export async function fetchMembers({ search = "", devOnly = false } = {}) {
+export async function fetchMembers({ search = "", role = "" } = {}) {
   const params = new URLSearchParams();
   if (search) params.set("search", search);
-  if (devOnly) params.set("dev", "true");
+  if (role) params.set("role", role);
   const query = params.toString();
   const response = await fetch(
     `${BASE_URL}/api/members${query ? `?${query}` : ""}`
+  );
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return response.json();
+}
+
+export async function fetchSimilarMembers(memberId, limit = 10) {
+  const params = new URLSearchParams();
+  if (limit) params.set("limit", limit.toString());
+  const query = params.toString();
+  const response = await fetch(
+    `${BASE_URL}/api/members/${memberId}/similar${query ? `?${query}` : ""}`
   );
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   return response.json();

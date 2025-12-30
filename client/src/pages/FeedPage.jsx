@@ -306,19 +306,32 @@ export default function FeedPage() {
                   {likesPost.likes.users.map((user, index) => {
                     const userName = user?.name || "Member";
                     const userPicture = user?.picture;
+                    const userId = user?._id;
                     return (
                       <li
-                        key={user?._id || `${userName}-${index}`}
+                        key={userId || `${userName}-${index}`}
                         className="likesItem"
                       >
-                        <div className="likesAvatar">
-                          {userPicture ? (
-                            <img src={userPicture} alt={userName} />
-                          ) : (
-                            <span>{userName[0]}</span>
-                          )}
-                        </div>
-                        <span>{userName}</span>
+                        <button
+                          type="button"
+                          className="likesItemButton"
+                          onClick={() => {
+                            if (userId) {
+                              setLikesPost(null);
+                              setActiveMemberId(userId);
+                            }
+                          }}
+                          disabled={!userId}
+                        >
+                          <div className="likesAvatar">
+                            {userPicture ? (
+                              <img src={userPicture} alt={userName} />
+                            ) : (
+                              <span>{userName[0]}</span>
+                            )}
+                          </div>
+                          <span>{userName}</span>
+                        </button>
                       </li>
                     );
                   })}
