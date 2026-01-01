@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "seed": "node scripts/seedMembers.js"
+    "seed": "node scripts/seedMembers.js",
+    "seed:prod": "MONGODB_URI='mongodb+srv://codyrkletter29_db_user:A8AwYPytYbougIxL@dali.cyms94p.mongodb.net/dali_prod?retryWrites=true&w=majority' node scripts/seedMembers.js"
   },
   "keywords": [],
   "author": "",
