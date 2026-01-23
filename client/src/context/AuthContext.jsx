@@ -1,3 +1,4 @@
+// Authentication context and state management developed with ChatGPT assistance
 import { createContext, useState } from "react";
 
 const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:4000";
@@ -35,7 +36,7 @@ export function AuthProvider({ children }) {
     }
   };
 
-  // Handle signup: call backend API
+  // Handle signup: create new user account
   const signup = async (email, password, name) => {
     try {
       setError("");
@@ -62,7 +63,7 @@ export function AuthProvider({ children }) {
     }
   };
 
-  // Handle logout: clear user
+  // Handle logout: clear user state
   const logout = () => {
     setUser(null);
     setError("");

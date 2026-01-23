@@ -1,3 +1,4 @@
+// Individual member profile page developed with ChatGPT assistance
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchMember } from "../api/members";
@@ -9,6 +10,7 @@ export default function ProfilePage() {
   const [member, setMember] = useState(null);
   const [status, setStatus] = useState("Loading profile...");
 
+  // Fetch member data based on URL parameter
   useEffect(() => {
     fetchMember(id)
       .then((data) => data.member)

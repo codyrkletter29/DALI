@@ -1,3 +1,4 @@
+// Login form and authentication flow developed with ChatGPT assistance
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../styles/LoginPage.css";
@@ -13,6 +14,7 @@ export default function LoginPage() {
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
 
+  // Handle login form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     setStatus("");
@@ -33,6 +35,7 @@ export default function LoginPage() {
         throw new Error(data.error || "Login failed");
       }
 
+      // Store user data in localStorage for session persistence
       localStorage.setItem("user", JSON.stringify(data.user));
       setStatus("Welcome back!");
       navigate("/members");

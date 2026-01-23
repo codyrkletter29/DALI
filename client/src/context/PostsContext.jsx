@@ -1,3 +1,4 @@
+// Posts context provider and state management logic developed with ChatGPT assistance
 import { createContext, useState } from "react";
 
 export const PostsContext = createContext();
@@ -5,7 +6,7 @@ export const PostsContext = createContext();
 export function PostsProvider({ children }) {
   const [posts, setPosts] = useState([]);
 
-  // Create a new post
+  // Create a new post and add to state
   const createPost = (content, authorName) => {
     const newPost = {
       id: Date.now(), // Simple ID using timestamp
@@ -20,7 +21,7 @@ export function PostsProvider({ children }) {
     return newPost;
   };
 
-  // Toggle like on a post
+  // Toggle like status for a specific post
   const toggleLike = (postId, userId) => {
     setPosts(
       posts.map((post) => {
@@ -39,7 +40,7 @@ export function PostsProvider({ children }) {
     );
   };
 
-  // Delete a post
+  // Remove a post from state
   const deletePost = (postId) => {
     setPosts(posts.filter((post) => post.id !== postId));
   };

@@ -1,3 +1,4 @@
+// Horizontal carousel for recommended member connections developed with ChatGPT assistance
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchSimilarMembers } from "../api/members";
@@ -9,6 +10,7 @@ export default function RecommendedConnections({ currentUserId }) {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  // Fetch similar members based on current user
   useEffect(() => {
     if (!currentUserId) return;
 
@@ -24,6 +26,7 @@ export default function RecommendedConnections({ currentUserId }) {
       });
   }, [currentUserId]);
 
+  // Carousel navigation handlers
   const handleScrollRight = () => {
     setScrollPosition((prev) => Math.min(prev + 1, similar.length - 1));
   };
@@ -49,7 +52,7 @@ export default function RecommendedConnections({ currentUserId }) {
     return null;
   }
 
-  // Show 4 items at a time
+  // Calculate visible members for carousel
   const itemsPerView = 4;
   const visibleMembers = similar.slice(
     scrollPosition,
@@ -61,6 +64,7 @@ export default function RecommendedConnections({ currentUserId }) {
   return (
     <div className="recommendedConnections">
       <h3 className="recommendedTitle">Recommended Connections</h3>
+      {/* Carousel with left/right navigation */}
       <div className="carouselContainer">
         {canScrollLeft && (
           <button
@@ -86,6 +90,7 @@ export default function RecommendedConnections({ currentUserId }) {
           </button>
         )}
 
+        {/* Display visible member cards */}
         <div className="carouselTrack">
           {visibleMembers.map((member) => (
             <div

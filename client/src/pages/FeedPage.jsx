@@ -1,3 +1,4 @@
+// Post feed UI structure and state management developed with ChatGPT assistance
 import { useEffect, useMemo, useState } from "react";
 import { createPost, fetchPosts, togglePostLike } from "../api/posts";
 import { fetchMember } from "../api/members";
@@ -5,6 +6,7 @@ import MemberProfileCard from "../components/MemberProfileCard";
 import "../styles/FeedPage.css";
 import "../styles/ProfilePage.css";
 
+// Helper function to format post timestamps
 const formatTimestamp = (value) => {
   if (!value) return "";
   const date = new Date(value);
@@ -30,6 +32,7 @@ export default function FeedPage() {
   const [profileStatus, setProfileStatus] = useState("");
   const [likesPost, setLikesPost] = useState(null);
 
+  // Retrieve current user from localStorage
   const currentUser = useMemo(() => {
     try {
       const stored = localStorage.getItem("user");
@@ -41,6 +44,7 @@ export default function FeedPage() {
 
   const currentMember = currentUser?.member ?? null;
 
+  // Fetch all posts on component mount
   useEffect(() => {
     let isMounted = true;
     setStatus("Loading posts...");
@@ -63,6 +67,7 @@ export default function FeedPage() {
     };
   }, []);
 
+  // Fetch member profile when a user clicks on an author
   useEffect(() => {
     if (!activeMemberId) return;
     let isMounted = true;
@@ -86,6 +91,7 @@ export default function FeedPage() {
     };
   }, [activeMemberId]);
 
+  // Handle new post submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
@@ -115,12 +121,14 @@ export default function FeedPage() {
     }
   };
 
+  // Handle post like/unlike toggle
   const handleLike = async (postId) => {
     if (!currentMember?.id) {
       setError("Log in to like posts.");
       return;
     }
 
+    // Prevent duplicate like requests
     if (pendingLikes.includes(postId)) return;
     setError("");
     setPendingLikes((prev) => [...new Set([...prev, postId])]);
@@ -190,6 +198,7 @@ export default function FeedPage() {
         </div>
       ) : (
         <div className="postsList">
+          {/* Render each post with author info and like functionality */}
           {posts.map((post) => {
             const likedByUser = post.likes?.users?.some(
               (user) =>
@@ -254,6 +263,7 @@ export default function FeedPage() {
         </div>
       )}
 
+      {/* Modal for viewing member profiles */}
       {activeMemberId && (
         <div className="modalOverlay" onClick={() => setActiveMemberId(null)}>
           <div
@@ -282,6 +292,7 @@ export default function FeedPage() {
         </div>
       )}
 
+      {/* Modal for viewing who liked a post */}
       {likesPost && (
         <div className="modalOverlay" onClick={() => setLikesPost(null)}>
           <div

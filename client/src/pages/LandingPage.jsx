@@ -1,3 +1,4 @@
+// Landing page hero section and layout structure developed with ChatGPT assistance
 import { Link } from "react-router-dom";
 import daliLogo from "../assets/dali-logo.svg";
 import "../styles/LandingPage.css";
@@ -5,6 +6,7 @@ import "../styles/LandingPage.css";
 export default function LandingPage() {
   return (
     <div className="landingPage">
+      {/* Hero section with logo and tagline */}
       <section className="landingHero">
         <div className="landingHeroHeader">
           <img
@@ -47,6 +49,7 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Feature highlights section */}
       <section className="landingHighlights">
         <div>
           <h3>Stay connected</h3>

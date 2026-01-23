@@ -1,3 +1,5 @@
+/* Form grid layout, fieldset styling, and input states assisted by ChatGPT */
+
 .signupPage {
   display: flex;
   flex-direction: column;

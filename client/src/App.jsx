@@ -1,3 +1,4 @@
+// Application routing configuration and layout structure developed with ChatGPT assistance
 import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import MembersPage from "./pages/MembersPage";
@@ -13,8 +14,11 @@ import "./styles/App.css";
 export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
+  // Define routes where header should be hidden
   const hideHeaderRoutes = new Set(["/", "/login", "/signup"]);
   const shouldShowHeader = !hideHeaderRoutes.has(location.pathname);
+  
+  // Handle user logout and navigation
   const handleLogout = useCallback(() => {
     localStorage.removeItem("user");
     navigate("/");

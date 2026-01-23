@@ -1,9 +1,10 @@
+// Member profile card component layout developed with ChatGPT assistance
 export default function MemberProfileCard({ member }) {
   if (!member) return null;
   const { favorites = {}, roles = {} } = member;
   const { thing1, thing2, thing3, dartmouthTradition } = favorites;
 
-  // Build roles array
+  // Build roles array from member data
   const memberRoles = [];
   if (roles.dev) memberRoles.push("Developer");
   if (roles.des) memberRoles.push("Designer");
@@ -15,6 +16,7 @@ export default function MemberProfileCard({ member }) {
     <div className="profileCard">
       <img className="profileAvatar" src={member.picture} alt={member.name} />
 
+      {/* Profile information section */}
       <div className="profileInfo">
         <h2 className="profileName">{member.name}</h2>
 
@@ -34,6 +36,7 @@ export default function MemberProfileCard({ member }) {
           </div>
         )}
 
+        {/* Grid layout for member facts */}
         <div className="factsGrid">
           <div className="fact">
             <div className="factLabel">Home</div>

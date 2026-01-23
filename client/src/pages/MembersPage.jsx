@@ -1,3 +1,4 @@
+// Member directory with search and filtering developed with ChatGPT assistance
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { fetchMembers } from "../api/members";
@@ -20,6 +21,7 @@ export default function MembersPage() {
     // AuthContext not provided, user will remain null
   }
 
+  // Fetch members whenever search or role filter changes
   useEffect(() => {
     setStatus("Loading members...");
 
@@ -63,8 +65,10 @@ export default function MembersPage() {
         </select>
       </div>
 
+      {/* Grid of member cards */}
       <div className="membersGrid">
         {members.map((m) => {
+          // Build roles array from member data
           const roles = [];
           if (m.roles?.dev) roles.push("Developer");
           if (m.roles?.des) roles.push("Designer");
@@ -89,6 +93,7 @@ export default function MembersPage() {
         })}
       </div>
 
+      {/* Show recommended connections if user is logged in */}
       {currentUserId && <RecommendedConnections currentUserId={currentUserId} />}
     </div>
   );

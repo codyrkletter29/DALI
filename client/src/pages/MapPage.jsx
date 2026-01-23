@@ -1,3 +1,4 @@
+// Interactive map with Leaflet integration developed with ChatGPT assistance
 import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import L from 'leaflet';
@@ -28,7 +29,7 @@ function MapPage() {
       try {
         setLoading(true);
         const data = await fetchMembers();
-        // Filter members with valid lat/lng
+        // Filter out members without valid coordinates
         const validMembers = data.members.filter(
           (member) =>
             member.homeLocation &&
@@ -62,6 +63,7 @@ function MapPage() {
         <p className="pageSub">Discover where our community is located across the US.</p>
       </div>
 
+      {/* Map centered on US with member location markers */}
       <MapContainer
         center={[39.8, -98.6]}
         zoom={4}
@@ -83,6 +85,7 @@ function MapPage() {
         ))}
       </MapContainer>
 
+      {/* Modal to display selected member's profile */}
       {selectedMember && (
         <div className="modal-overlay" onClick={() => setSelectedMember(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

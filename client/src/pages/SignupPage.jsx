@@ -1,3 +1,4 @@
+// Multi-step signup form with validation developed with ChatGPT assistance
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/SignupPage.css";
@@ -54,6 +55,7 @@ export default function SignupPage() {
     }));
   };
 
+  // Check if member already exists in database
   const checkName = async () => {
     setError("");
     if (!trimmedName) {
@@ -88,6 +90,7 @@ export default function SignupPage() {
     }
   };
 
+  // Handle form submission for signup
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
@@ -124,12 +127,14 @@ export default function SignupPage() {
       return;
     }
 
+    // Build payload with required fields
     const payload = {
       name: trimmedName,
       email,
       password,
     };
 
+    // Add full profile data if creating new member
     if (!nameExists) {
       payload.major = major;
       payload.minor = minor;
@@ -221,6 +226,7 @@ export default function SignupPage() {
           </div>
         )}
 
+        {/* Show confirmation if member already exists */}
         {nameChecked && nameExists && (
           <div className="formSection">
             <p className="infoCallout">
@@ -233,11 +239,12 @@ export default function SignupPage() {
           </div>
         )}
 
+        {/* Show full profile form if member doesn't exist */}
         {nameChecked && !nameExists && (
           <div className="formSection">
             <h3 className="sectionTitle">Step 2: Profile details</h3>
             <p className="infoCallout">
-              We couldn’t find an existing member profile. Tell us a bit more so
+              We couldn't find an existing member profile. Tell us a bit more so
               we can create one.
             </p>
             <div className="formGrid">
